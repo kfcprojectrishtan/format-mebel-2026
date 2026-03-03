@@ -3706,6 +3706,58 @@
             updateHeaderLocation();
         }
 
+        // --- Auto GPS detection on page load ---
+        // Runs once for logged-in users who have no saved addresses yet
+        async function autoDetectGPS() {
+            // Only run once per device
+            if (localStorage.getItem('gps_auto_requested')) return;
+            localStorage.setItem('gps_auto_requested', '1');
+
+            // Only if user has no saved addresses
+            const existing = loadAddresses();
+            if (existing.length > 0) return;
+
+            // Check if geolocation is available
+            if (!navigator.geolocation) return;
+
+            navigator.geolocation.getCurrentPosition(
+                async (pos) => {
+                    const lat = pos.coords.latitude;
+                    const lng = pos.coords.longitude;
+
+                    // Update default map center for future map opens
+                    _selectedLat = lat;
+                    _selectedLng = lng;
+
+                    // Reverse geocode to get address label
+                    let label = await reverseGeocode(lat, lng);
+                    if (!label) label = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+
+                    // Auto-save as first address
+                    const newAddr = {
+                        id: 'addr_' + Date.now(),
+                        lat: lat,
+                        lng: lng,
+                        label: label,
+                        comment: 'GPS orqali aniqlangan',
+                        createdAt: Date.now()
+                    };
+
+                    const list = loadAddresses();
+                    list.push(newAddr);
+                    saveAddresses(list);
+                    setSelectedId(newAddr.id);
+
+                    // Update header to show the detected address
+                    updateHeaderLocation();
+                },
+                () => {
+                    // User denied GPS — do nothing, they can add manually later
+                },
+                { enableHighAccuracy: true, timeout: 10000 }
+            );
+        }
+
         function openLocationSheet() {
             document.getElementById('locationOverlay').classList.add('active');
             document.getElementById('locationSheet').classList.add('active');
@@ -4157,6 +4209,8 @@
             const user = getUser();
             if (user) {
                 window._verifiedPhone = user.phone;
+                // Auto-detect GPS for logged-in users
+                autoDetectGPS();
             }
         });
 
