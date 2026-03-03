@@ -3033,6 +3033,18 @@
                 </button>
             </div>
 
+            <!-- Restaurant closed notice -->
+            <div id="restaurantClosedNotice"
+                style="display:none; margin-bottom:12px; padding:14px; border-radius:14px; background:#FFEBEE; border:1.5px solid #EF9A9A; font-family:'Poppins',sans-serif;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:1.2rem;">🕐</span>
+                    <div>
+                        <div style="font-size:0.88rem; font-weight:700; color:#C62828;">Restoran hozir ishlamaydi</div>
+                        <div style="font-size:0.8rem; color:#999; margin-top:2px;">Ish vaqti: 09:00 – 00:00</div>
+                    </div>
+                </div>
+            </div>
+
             <button class="confirm-btn" id="confirmBtn" onclick="placeOrder()"
                 style="display:flex; align-items:center; justify-content:center; gap:8px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -4286,6 +4298,24 @@
             document.getElementById('checkoutTotalLabel').textContent = t('checkoutTotalLabel');
             document.getElementById('confirmBtn').textContent = t('confirmBtn');
 
+            // Working hours check (09:00 – 00:00)
+            const confirmBtn = document.getElementById('confirmBtn');
+            const closedNotice = document.getElementById('restaurantClosedNotice');
+            if (!isRestaurantOpen()) {
+                confirmBtn.disabled = true;
+                confirmBtn.style.background = '#E0E0E0';
+                confirmBtn.style.color = '#999';
+                confirmBtn.style.cursor = 'not-allowed';
+                confirmBtn.innerHTML = '🕐 Restoran yopiq';
+                if (closedNotice) closedNotice.style.display = 'block';
+            } else {
+                confirmBtn.disabled = false;
+                confirmBtn.style.background = '#FAB95B';
+                confirmBtn.style.color = '#fff';
+                confirmBtn.style.cursor = 'pointer';
+                if (closedNotice) closedNotice.style.display = 'none';
+            }
+
             document.getElementById('checkoutOverlay').classList.add('active');
             document.getElementById('checkoutSheet').classList.add('active');
 
@@ -4296,6 +4326,17 @@
         function closeCheckout() {
             document.getElementById('checkoutOverlay').classList.remove('active');
             document.getElementById('checkoutSheet').classList.remove('active');
+        }
+
+        // ========================
+        // RESTAURANT WORKING HOURS
+        // ========================
+        function isRestaurantOpen() {
+            const now = new Date();
+            const hour = now.getHours(); // 0-23
+            // Open: 09:00 – 00:00 (midnight)
+            // Closed: 00:00 – 08:59
+            return hour >= 9; // hour 9-23 = open, hour 0-8 = closed
         }
 
         // ========================
