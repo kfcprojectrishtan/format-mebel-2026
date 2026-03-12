@@ -34,6 +34,7 @@ function openMapModal() {
             center: { lat: currentCenterLat, lng: currentCenterLng },
             zoom: 15,
             disableDefaultUI: true,
+            gestureHandling: 'greedy',
             zoomControl: true,
             zoomControlOptions: {
                 position: google.maps.ControlPosition.RIGHT_BOTTOM
