@@ -471,6 +471,27 @@
             background: #E8E8E8;
         }
 
+        .discount-badge {
+            display: inline-block;
+            background: #E4002B;
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+            margin-left: 4px;
+            vertical-align: middle;
+            letter-spacing: 0.02em;
+        }
+
+        .old-price-text {
+            text-decoration: line-through;
+            color: #aaa;
+            font-size: 0.72rem;
+            font-weight: 500;
+            margin-right: 2px;
+        }
+
         /* Product Detail Page */
         .product-detail {
             background: #FFFFFF;
@@ -4035,7 +4056,11 @@
                                         <button class="qty-btn" style="width:30px;height:30px;font-size:1rem;" onclick="event.stopPropagation(); updateProductQty(${p.id}, 1)">+</button>
                                     </div>
                                 ` : `
-                                    <button class="product-price-btn" onclick="event.stopPropagation(); addProductToCart(${p.id})">${p.price.toLocaleString()} UZS</button>
+                                    <button class="product-price-btn" onclick="event.stopPropagation(); addProductToCart(${p.id})">
+                                        ${p.old_price ? `<span class="old-price-text">${p.old_price.toLocaleString()}</span>` : ''}
+                                        ${p.price.toLocaleString()} UZS
+                                        ${p.old_price ? `<span class="discount-badge">-${Math.round((1 - p.price / p.old_price) * 100)}%</span>` : ''}
+                                    </button>
                                 `}
                             </div>
                         </div>
