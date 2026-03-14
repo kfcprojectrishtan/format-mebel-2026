@@ -2553,8 +2553,12 @@
             box-shadow: 0 4px 16px rgba(230, 126, 34, 0.45);
             cursor: pointer;
             z-index: 500;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none;
+        }
+
+        body:has(.bottom-cart-bar.visible) .floating-call-btn {
+            bottom: 130px;
         }
 
         .floating-call-btn:active {
@@ -2880,7 +2884,7 @@
                     </svg>
                 </a>
                 <!-- Telegram -->
-                <a href="https://t.me/m5chickenbot" target="_blank" class="social-icon-link telegram"
+                <a href="https://t.me/M5Chickenadmin" target="_blank" class="social-icon-link telegram"
                     aria-label="Telegram">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -5220,7 +5224,7 @@
             document.getElementById('bannedSheet').style.bottom = '-100%';
         }
     </script> <!-- ── Floating Call Button ── -->
-    <a href="tel:+998712007777" class="floating-call-btn" aria-label="Call center">
+    <a href="tel:+998949777701" class="floating-call-btn" aria-label="Call center">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
             <path
                 d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
