@@ -382,7 +382,9 @@
         .product-card {
             flex-shrink: 0;
             width: 140px;
-            background: transparent;
+            background: #F4F6F8;
+            border-radius: 16px;
+            padding: 8px;
             cursor: pointer;
             /* Reveal Animation Base */
             opacity: 0;
@@ -403,24 +405,17 @@
 
         .product-image-container {
             width: 100%;
-            height: 140px;
-            background: #F8F8F8;
-            border-radius: 20px;
+            height: 120px;
+            background: #FFFFFF;
+            border-radius: 12px;
             position: relative;
             margin-bottom: 12px;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 100%;
-            padding: 8%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.8rem;
         }
 
-        .product-image img {
+        .product-image {
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -438,9 +433,9 @@
         /* Discount Badge */
         .discount-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #00A050;
+            top: 8px;
+            left: 8px;
+            background: #00965E;
             color: #fff;
             font-size: 0.75rem;
             font-weight: 700;
@@ -449,87 +444,26 @@
             z-index: 2;
         }
 
-        /* Add to cart circular button */
-        .add-to-cart-circle {
-            position: absolute;
-            bottom: -18px;
-            right: 12px;
-            width: 40px;
-            height: 40px;
-            background: #FFFFFF;
-            border: none;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 2;
-            transition: transform 0.2s;
-        }
-
-        .add-to-cart-circle:active {
-            transform: scale(0.9);
-            background: #f0f0f0;
-        }
-
-        .add-to-cart-circle svg {
-            width: 16px;
-            height: 16px;
-            stroke: #000;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-        }
-
-        /* Quantity controls overlapping the edge */
-        .quantity-pill {
-            position: absolute;
-            bottom: -18px;
-            right: 12px;
-            height: 40px;
-            background: #FFFFFF;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 4px;
-            z-index: 2;
-            width: 90px;
-        }
-
-        .qty-pill-btn {
-            width: 32px;
-            height: 32px;
-            border: none;
-            background: #F5F5F5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #000;
-            cursor: pointer;
-        }
-
-        .qty-pill-btn:active {
-            background: #e0e0e0;
-        }
-
-        .qty-pill-value {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #000;
-            flex: 1;
-            text-align: center;
-            line-height: normal;
-        }
-
+        /* Product Info container */
         .product-info {
             display: flex;
             flex-direction: column;
-            gap: 2px;
             padding: 0 4px;
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #4A5568;
+            line-height: 1.25;
+            margin-bottom: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-transform: uppercase;
         }
 
         .price-row {
@@ -540,24 +474,76 @@
         }
 
         .old-price-row {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            color: #999;
+            color: #A0AEC0;
             text-decoration: line-through;
             line-height: 1.1;
+            margin-bottom: 12px;
         }
 
-        .product-name {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #111;
-            line-height: 1.25;
-            margin-top: 4px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+        /* The full-width white pill button at the bottom */
+        .add-to-cart-pill {
+            width: 100%;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 12px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1A202C;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            margin-top: auto;
+        }
+
+        .add-to-cart-pill:active {
+            transform: scale(0.96);
+            background: #F8F9FA;
+        }
+
+        /* Quantity controls overlapping the edge - adapting to this full width layout */
+        .quantity-pill-full {
+            width: 100%;
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            margin-top: auto;
+        }
+
+        .qty-pill-btn-full {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: #F4F6F8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #1A202C;
+            cursor: pointer;
+        }
+
+        .qty-pill-btn-full:active {
+            background: #E2E8F0;
+        }
+
+        .qty-pill-value-full {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1A202C;
+            flex: 1;
+            text-align: center;
+            line-height: normal;
         }
 
         /* Product Detail Page */
@@ -4117,26 +4103,23 @@
                             <div class="product-image-container">
                                 ${p.old_price ? `<div class="discount-badge">-${Math.round((1 - p.price / p.old_price) * 100)}%</div>` : ''}
                                 <div class="product-image">${pImg(p.image)}</div>
-                                
-                                ${inCart ? `
-                                    <div class="quantity-pill" onclick="event.stopPropagation();">
-                                        <button class="qty-pill-btn" onclick="updateProductQty(${p.id}, -1)">−</button>
-                                        <span class="qty-pill-value">${inCart.quantity}</span>
-                                        <button class="qty-pill-btn" onclick="updateProductQty(${p.id}, 1)">+</button>
-                                    </div>
-                                ` : `
-                                    <button class="add-to-cart-circle" onclick="event.stopPropagation(); addProductToCart(${p.id})">
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 5V19M5 12H19" />
-                                        </svg>
-                                    </button>
-                                `}
                             </div>
                             
                             <div class="product-info">
-                                <div class="price-row">${p.price.toLocaleString()} UZS</div>
-                                ${p.old_price ? `<div class="old-price-row">${p.old_price.toLocaleString()} UZS</div>` : `<div class="old-price-row" style="opacity:0">&nbsp;</div>`}
                                 <div class="product-name">${p.name}</div>
+                                ${p.old_price ? `<div class="old-price-row">${p.old_price.toLocaleString().replace(/,/g, ' ')} сум</div>` : `<div class="old-price-row" style="opacity:0">&nbsp;</div>`}
+                                
+                                ${inCart ? `
+                                    <div class="quantity-pill-full" onclick="event.stopPropagation();">
+                                        <button class="qty-pill-btn-full" onclick="updateProductQty(${p.id}, -1)">−</button>
+                                        <span class="qty-pill-value-full">${inCart.quantity}</span>
+                                        <button class="qty-pill-btn-full" onclick="updateProductQty(${p.id}, 1)">+</button>
+                                    </div>
+                                ` : `
+                                    <button class="add-to-cart-pill" onclick="event.stopPropagation(); addProductToCart(${p.id})">
+                                        ${p.price.toLocaleString().replace(/,/g, ' ')} сум
+                                    </button>
+                                `}
                             </div>
                         </div>
                     `;
