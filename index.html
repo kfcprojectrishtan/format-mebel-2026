@@ -339,22 +339,28 @@
 
         .category-card {
             flex-shrink: 0;
-            width: 110px;
+            width: 90px;
             text-align: center;
             cursor: pointer;
+            padding: 8px 4px;
+            border-radius: 16px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .category-card.active {
+            background: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
         .category-image {
-            width: 110px;
-            height: 110px;
-            background: #FFFFFF;
-            border-radius: 16px;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 0.4rem auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            font-size: 2.5rem;
+            background: transparent;
         }
 
         .category-card:active .category-image {
@@ -4096,7 +4102,7 @@
 
             // Render categories slider
             const sliderHTML = categories.map(cat => `
-                <div class="category-card" onclick="scrollToSection('${cat.key}')">
+                <div class="category-card" id="cat-tab-${cat.key}" onclick="scrollToSection('${cat.key}')">
                     <div class="category-image">${pImg(cat.image_url || cat.image_emoji)}</div>
                     <div class="category-name">${cat.title}</div>
                 </div>
@@ -4163,6 +4169,7 @@
 
             // Re-initialize scroll reveal after rendering new cards
             setTimeout(setupScrollReveal, 50);
+            setTimeout(setupScrollSpy, 100);
         }
 
         function setupScrollReveal() {
@@ -4189,6 +4196,52 @@
             });
         }
 
+        let scrollSpyObserver = null;
+        function setupScrollSpy() {
+            if (scrollSpyObserver) {
+                scrollSpyObserver.disconnect();
+            }
+
+            const sections = document.querySelectorAll('.products-section');
+            if (!sections.length) return;
+
+            scrollSpyObserver = new IntersectionObserver((entries) => {
+                let activeEntry = null;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        activeEntry = entry;
+                    }
+                });
+
+                if (activeEntry) {
+                    const activeId = activeEntry.target.id;
+                    document.querySelectorAll('.categories-slider .category-card').forEach(card => card.classList.remove('active'));
+                    const activeTab = document.getElementById(`cat-tab-${activeId}`);
+                    if (activeTab) {
+                        activeTab.classList.add('active');
+                        const slider = document.getElementById('categoriesSlider');
+                        if (slider) {
+                            slider.scrollTo({
+                                left: activeTab.offsetLeft - slider.offsetWidth / 2 + activeTab.offsetWidth / 2,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }
+            }, {
+                root: null,
+                rootMargin: '-140px 0px -60% 0px',
+                threshold: 0
+            });
+
+            sections.forEach(sec => scrollSpyObserver.observe(sec));
+
+            // Set first tab as active initially if no tab is active
+            const initialTab = document.querySelector('.categories-slider .category-card');
+            if (initialTab && !document.querySelector('.categories-slider .category-card.active')) {
+                initialTab.classList.add('active');
+            }
+        }
 
         function addProductToCart(productId) {
             const product = products.find(p => p.id === productId);
