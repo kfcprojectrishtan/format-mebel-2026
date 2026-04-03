@@ -1593,6 +1593,38 @@
             letter-spacing: -0.2px;
         }
 
+        /* ====================================================
+           CATALOG PAGE STYLES
+        ==================================================== */
+        .catalog-container {
+            margin: 40px auto;
+        }
+        .catalog-page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+        }
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 900px) {
+            .catalog-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .catalog-page-title {
+                font-size: 22px;
+                margin-top: 10px;
+                margin-bottom: 16px;
+                padding: 0 16px;
+            }
+            .catalog-container {
+                margin: 20px auto 80px auto;
+            }
+        }
     </style>
 </head>
 
@@ -1791,306 +1823,174 @@
         </div>
     </header>
 
-    <!-- Nav Pills -->
-    <div class="nav-pills-area">
-        <div class="container">
-            <div class="nav-pills">
-                <a href="#" class="nav-pill highlight"><i class="fa-solid fa-percent"></i> Успейте купить %</a>
-                <a href="#" class="nav-pill">Новинки</a>
-                <a href="#" class="nav-pill">Скидки</a>
-                <a href="#" class="nav-pill">Кресла для руководителя</a>
-                <a href="#" class="nav-pill">Кресла для персонала</a>
-                <a href="#" class="nav-pill">Диваны прямые</a>
-                <a href="#" class="nav-pill">Офисные столы</a>
-                <a href="#" class="nav-pill">Стулья для посетителей</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Slider -->
-    <div class="hero-section">
-        <div class="swiper hero-slider">
-            <div class="swiper-wrapper">
-                <!-- Placeholder slides replicating Dafna style -->
-                <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2670&auto=format&fit=crop"
-                        class="hero-img" alt="Banner 1">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=2670&auto=format&fit=crop"
-                        class="hero-img" alt="Banner 2">
-                </div>
-            </div>
-
-
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </div>
-                <!-- Shop by Category Section -->
-        <section class="q-cat-section">
-            <h2 class="q-cat-heading">Покупки по категориям</h2>
-            <div class="q-cat-list">
-                <a href="catalog.html?category=tables" class="q-cat-item">
-                    <div class="q-cat-circle"><i class="fa-solid fa-utensils"></i></div>
-                    <span class="q-cat-name">Обеденные группы</span>
-                </a>
-                <a href="catalog.html?category=chairs" class="q-cat-item">
-                    <div class="q-cat-circle"><i class="fa-solid fa-chair"></i></div>
-                    <span class="q-cat-name">Кресла для отдыха</span>
-                </a>
-                <a href="catalog.html?category=storage" class="q-cat-item">
-                    <div class="q-cat-circle"><i class="fa-solid fa-shoe-prints"></i></div>
-                    <span class="q-cat-name">Обувницы</span>
-                </a>
-                <a href="catalog.html?category=storage" class="q-cat-item">
-                    <div class="q-cat-circle"><i class="fa-solid fa-book"></i></div>
-                    <span class="q-cat-name">Книжные шкафы</span>
-                </a>
-                <a href="catalog.html?category=tables" class="q-cat-item">
-                    <div class="q-cat-circle"><i class="fa-solid fa-laptop"></i></div>
-                    <span class="q-cat-name">Письменные столы</span>
-                </a>
-                <a href="catalog.html?category=storage" class="q-cat-item">
-                    <div class="q-cat-circle"><i class="fa-solid fa-box-archive"></i></div>
-                    <span class="q-cat-name">Комоды</span>
-                </a>
-                <a href="catalog.html?category=storage" class="q-cat-item">
-                    <div class="q-cat-circle"><i class="fa-solid fa-table-cells-large"></i></div>
-                    <span class="q-cat-name">Буфеты</span>
-                </a>
-                <a href="catalog.html?category=beds" class="q-cat-item">
-                    <div class="q-cat-circle"><i class="fa-solid fa-bed"></i></div>
-                    <span class="q-cat-name">Матрасы</span>
-                </a>
-            </div>
-        </section>
-
-    <!-- Bestsellers Section -->
-    <div class="container section-header">
-        <h2 class="section-title">Лидеры продаж</h2>
-    </div>
-
-    <!-- Product Carousel Container (using Swiper) -->
-    <div class="container swiper product-slider">
-        <div class="swiper-wrapper" style="display: flex;">
+    <!-- Catalog Main Content -->
+    <main class="catalog-container container">
+        <h1 class="catalog-page-title">Каталог мебели</h1>
+        
+        <div class="catalog-grid">
             <!-- Product 1 -->
-            <div class="swiper-slide" style="display: flex; height: auto;">
-                <div class="product-card">
-                    <div class="p-badges">
-                        <span class="p-badge badge-red">-27%</span>
-                        <span class="p-badge badge-blue">ХИТ</span>
-                    </div>
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?q=80&w=800&auto=format&fit=crop"
-                            alt="Кресло">
-                    </div>
-                    <div class="p-colors">
-                        <div class="color-dot active" style="background-color: #333;"></div>
-                        <div class="color-dot" style="background-color: #8B4513;"></div>
-                        <div class="color-dot" style="background-color: #f5f5dc;"></div>
-                    </div>
-                    <div class="p-title">Кресло руководителя FORMAT ERGO 400</div>
-                    <div class="p-price-block">
-                        <div class="p-old-price">3 500 000 сум</div>
-                        <div class="p-price">2 555 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
+            <div class="product-card" data-category="chairs">
+                <div class="p-badges">
+                    <span class="p-badge badge-red">-27%</span>
+                    <span class="p-badge badge-blue">ХИТ</span>
+                </div>
+                <div class="p-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?q=80&w=800&auto=format&fit=crop"
+                        alt="Кресло">
+                </div>
+                <div class="p-colors">
+                    <div class="color-dot active" style="background-color: #333;"></div>
+                    <div class="color-dot" style="background-color: #8B4513;"></div>
+                    <div class="color-dot" style="background-color: #f5f5dc;"></div>
+                </div>
+                <div class="p-title">Кресло руководителя FORMAT ERGO 400</div>
+                <div class="p-price-block">
+                    <div class="p-old-price">3 500 000 сум</div>
+                    <div class="p-price">2 555 000 сум</div>
+                </div>
+                <div class="p-actions">
+                    <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
+                    <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
 
             <!-- Product 2 -->
-            <div class="swiper-slide" style="display: flex; height: auto;">
-                <div class="product-card">
-                    <div class="p-badges">
-                        <span class="p-badge badge-green">НОВИНКА</span>
-                    </div>
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800&auto=format&fit=crop"
-                            alt="Стул">
-                    </div>
-                    <div class="p-colors">
-                        <div class="color-dot active" style="background-color: #555;"></div>
-                    </div>
-                    <div class="p-title">Стул для посетителей ISO Black (экокожа)</div>
-                    <div class="p-price-block">
-                        <div class="p-old-price"></div>
-                        <div class="p-price">350 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
+            <div class="product-card" data-category="chairs">
+                <div class="p-badges">
+                    <span class="p-badge badge-green">НОВИНКА</span>
+                </div>
+                <div class="p-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800&auto=format&fit=crop"
+                        alt="Стул">
+                </div>
+                <div class="p-colors">
+                    <div class="color-dot active" style="background-color: #555;"></div>
+                </div>
+                <div class="p-title">Стул для посетителей ISO Black (экокожа)</div>
+                <div class="p-price-block">
+                    <div class="p-old-price"></div>
+                    <div class="p-price">350 000 сум</div>
+                </div>
+                <div class="p-actions">
+                    <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
+                    <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
 
             <!-- Product 3 -->
-            <div class="swiper-slide" style="display: flex; height: auto;">
-                <div class="product-card">
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop"
-                            alt="Диван">
-                    </div>
-                    <div class="p-colors">
-                        <div class="color-dot active" style="background-color: #aa9988;"></div>
-                        <div class="color-dot" style="background-color: #333;"></div>
-                    </div>
-                    <div class="p-title">Офисный диван FORMAT Comfort (3-местный)</div>
-                    <div class="p-price-block">
-                        <div class="p-old-price"></div>
-                        <div class="p-price">4 200 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
+            <div class="product-card" data-category="sofas">
+                <div class="p-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop"
+                        alt="Диван">
+                </div>
+                <div class="p-colors">
+                    <div class="color-dot active" style="background-color: #aa9988;"></div>
+                    <div class="color-dot" style="background-color: #333;"></div>
+                </div>
+                <div class="p-title">Офисный диван FORMAT Comfort (3-местный)</div>
+                <div class="p-price-block">
+                    <div class="p-old-price"></div>
+                    <div class="p-price">4 200 000 сум</div>
+                </div>
+                <div class="p-actions">
+                    <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
+                    <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
 
             <!-- Product 4 -->
-            <div class="swiper-slide" style="display: flex; height: auto;">
-                <div class="product-card">
-                    <div class="p-badges">
-                        <span class="p-badge badge-red">-15%</span>
-                    </div>
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=800&auto=format&fit=crop"
-                            alt="Стол">
-                    </div>
-                    <div class="p-title">Стол письменный Loft 120 см</div>
-                    <div class="p-price-block">
-                        <div class="p-old-price">1 200 000 сум</div>
-                        <div class="p-price">1 020 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
+            <div class="product-card" data-category="tables">
+                <div class="p-badges">
+                    <span class="p-badge badge-red">-15%</span>
+                </div>
+                <div class="p-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=800&auto=format&fit=crop"
+                        alt="Стол">
+                </div>
+                <div class="p-title">Стол письменный Loft 120 см</div>
+                <div class="p-price-block">
+                    <div class="p-old-price">1 200 000 сум</div>
+                    <div class="p-price">1 020 000 сум</div>
+                </div>
+                <div class="p-actions">
+                    <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
+                    <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
-            <!-- Product 5 for scroll -->
-            <div class="swiper-slide">
-                <div class="product-card">
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800&auto=format&fit=crop"
-                            alt="Кресло">
-                    </div>
-                    <div class="p-title">Кресло операторское FORMAT Basic</div>
-                    <div class="p-price-block">
-                        <div class="p-old-price"></div>
-                        <div class="p-price">850 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Add Navigation -->
-        <div class="swiper-button-next prod-next"></div>
-        <div class="swiper-button-prev prod-prev"></div>
-    </div>
 
-    <!-- Large Promo Banners -->
-    <div class="large-banners" style="margin-top: 60px;">
-        <div class="banner-box">
-            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop"
-                alt="Реклама 1">
-        </div>
-        <div class="banner-box">
-            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop"
-                alt="Реклама 2">
-        </div>
-    </div>
-
-    <!-- New Arrivals Section -->
-    <div class="container section-header">
-        <h2 class="section-title">Новинки</h2>
-    </div>
-
-    <div class="container swiper product-slider">
-        <div class="swiper-wrapper" style="display: flex;">
-            <!-- Variant Products for New Arrivals -->
-            <div class="swiper-slide" style="display: flex; height: auto;">
-                <div class="product-card">
-                    <div class="p-badges">
-                        <span class="p-badge badge-green">НОВИНКА</span>
-                    </div>
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800&auto=format&fit=crop"
-                            alt="Кресло">
-                    </div>
-                    <div class="p-title">Стильное офисное кресло Aero</div>
-                    <div class="p-price-block">
-                        <div class="p-price">1 550 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
+            <!-- Product 5 -->
+            <div class="product-card" data-category="chairs">
+                <div class="p-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800&auto=format&fit=crop"
+                        alt="Кресло">
+                </div>
+                <div class="p-title">Кресло операторское FORMAT Basic</div>
+                <div class="p-price-block">
+                    <div class="p-old-price"></div>
+                    <div class="p-price">850 000 сум</div>
+                </div>
+                <div class="p-actions">
+                    <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
+                    <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
-            <div class="swiper-slide" style="display: flex; height: auto;">
-                <div class="product-card">
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=800&auto=format&fit=crop"
-                            alt="Стол">
-                    </div>
-                    <div class="p-title">Минималистичный стол Nordic</div>
-                    <div class="p-price-block">
-                        <div class="p-price">2 100 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card" data-category="chairs">
+                <div class="p-badges">
+                    <span class="p-badge badge-green">НОВИНКА</span>
+                </div>
+                <div class="p-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800&auto=format&fit=crop"
+                        alt="Стул">
+                </div>
+                <div class="p-title">Стул барный High Wood</div>
+                <div class="p-price-block">
+                    <div class="p-price">650 000 сум</div>
+                </div>
+                <div class="p-actions">
+                    <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
+                    <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
-            <div class="swiper-slide" style="display: flex; height: auto;">
-                <div class="product-card">
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800&auto=format&fit=crop"
-                            alt="Стул">
-                    </div>
-                    <div class="p-title">Стул барный High Wood</div>
-                    <div class="p-price-block">
-                        <div class="p-price">650 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card" data-category="sofas">
+                <div class="p-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=800&auto=format&fit=crop"
+                        alt="Диван">
+                </div>
+                <div class="p-title">Диван Velvet Grey (2-местный)</div>
+                <div class="p-price-block">
+                    <div class="p-price">5 800 000 сум</div>
+                </div>
+                <div class="p-actions">
+                    <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
+                    <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
-            <div class="swiper-slide" style="display: flex; height: auto;">
-                <div class="product-card">
-                    <div class="p-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=800&auto=format&fit=crop"
-                            alt="Диван">
-                    </div>
-                    <div class="p-title">Диван Velvet Grey (2-местный)</div>
-                    <div class="p-price-block">
-                        <div class="p-price">5 800 000 сум</div>
-                    </div>
-                    <div class="p-actions">
-                        <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
-                    </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card" data-category="chairs">
+                <div class="p-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800&auto=format&fit=crop"
+                        alt="Стул">
+                </div>
+                <div class="p-colors">
+                    <div class="color-dot" style="background-color: #555;"></div>
+                </div>
+                <div class="p-title">Стул для конференций ISO</div>
+                <div class="p-price-block">
+                    <div class="p-old-price"></div>
+                    <div class="p-price">300 000 сум</div>
+                </div>
+                <div class="p-actions">
+                    <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
+                    <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
         </div>
-        <div class="swiper-button-next prod-next"></div>
-        <div class="swiper-button-prev prod-prev"></div>
-    </div>
-
-
-    </div> <!-- End Container -->
-
+    </main>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -2368,14 +2268,53 @@
         // Initialize Call
         updateCartBadges();
 
+        // 🔍 Category Filtering Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            
+            const titleMap = {
+                'sofas': 'Диваны',
+                'chairs': 'Стулья и кресла',
+                'tables': 'Столы',
+                'beds': 'Кровати',
+                'storage': 'Организация хранения',
+                'decor': 'Декор',
+                'outdoor': 'Уличная мебель',
+                'lighting': 'Освещение',
+                'kitchen': 'Кухня'
+            };
+
+            if (category) {
+                // Update Page Title
+                if (titleMap[category]) {
+                    const titleElement = document.querySelector('.catalog-page-title');
+                    if (titleElement) {
+                        titleElement.textContent = titleMap[category];
+                    }
+                    document.title = titleMap[category] + ' - FORMAT';
+                }
+                
+                // Filter Products
+                const products = document.querySelectorAll('.product-card');
+                products.forEach(p => {
+                    // if data-category matches OR no category specified, show it
+                    if (p.getAttribute('data-category') === category) {
+                        p.style.display = 'block';
+                    } else {
+                        p.style.display = 'none';
+                    }
+                });
+            }
+        });
     </script>
 
     <nav class="mobile-bottom-nav">
-        <a href="#" class="mob-nav-item active">
+        <a href="index.html" class="mob-nav-item">
             <i class="fa-solid fa-house"></i>
             <span>Главная</span>
         </a>
-        <a href="catalog.html" class="mob-nav-item">
+        <a href="catalog.html" class="mob-nav-item active">
             <i class="fa-solid fa-layer-group"></i>
             <span>Каталог</span>
         </a>
