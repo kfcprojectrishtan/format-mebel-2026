@@ -961,7 +961,7 @@
             .large-banners {
                 grid-template-columns: 1fr;
                 gap: 12px;
-                margin-bottom: 90px;
+                margin-bottom: 10px;
                 /* space for bottom nav */
             }
 
@@ -1506,6 +1506,8 @@
             justify-content: center;
             padding: 0 4px;
         }
+    
+        .promo-card, .dk-mega-promo, #promoCard, #promoTrigger { display: none !important; }
     </style>
 </head>
 
@@ -1514,9 +1516,22 @@
     <!-- 📱 Mobile Utility Bar (New) -->
     <div class="mobile-utility-bar">
         <a href="tel:+998785553355" class="m-phone">+998 78 555 33 55</a>
-        <div class="m-lang">
-            <img src="https://cdn-icons-png.flaticon.com/512/197/197408.png" alt="RU">
-            <span>RU</span>
+        <div class="m-lang has-dropdown" onclick="toggleLangDropdown(event)" style="position:relative; cursor:pointer; display:flex; align-items:center; gap:5px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/197/197408.png" alt="RU" id="current-lang-img" style="width:20px;height:20px;border-radius:50%;object-fit:cover;">
+            <span id="current-lang-text">RU</span>
+            <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+            
+            <div class="lang-dropdown" id="langDropdown" style="display:none; position:absolute; top:30px; right:0; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:8px; z-index:11000; flex-direction:column; min-width:80px; overflow:hidden;">
+                <div class="lang-option" onclick="changeLanguage('RU', 'https://cdn-icons-png.flaticon.com/512/197/197408.png', event)" style="padding:10px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #eee; color:#333;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/197/197408.png" alt="RU" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> RU
+                </div>
+                <div class="lang-option" onclick="changeLanguage('UZ', 'https://cdn-icons-png.flaticon.com/512/197/197416.png', event)" style="padding:10px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #eee; color:#333;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/197/197416.png" alt="UZ" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> UZ
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ENG', 'https://cdn-icons-png.flaticon.com/512/197/197374.png', event)" style="padding:10px; display:flex; align-items:center; gap:10px; color:#333;">
+                     <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" alt="ENG" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> ENG
+                </div>
+            </div>
         </div>
     </div>
 
@@ -2034,6 +2049,15 @@
         .btn-outline:hover {
             border-color: var(--accent-red);
             color: var(--accent-red);
+        }
+    
+        .promo-card, .dk-mega-promo, #promoCard, #promoTrigger { display: none !important; }
+
+        @media (max-width: 768px) {
+            .main-header .mobile-only,
+            .nav-pills-area {
+                display: none !important;
+            }
         }
     </style>
 
@@ -2873,6 +2897,8 @@
             background: var(--primary-blue);
             color: #ffffff;
         }
+    
+        .promo-card, .dk-mega-promo, #promoCard, #promoTrigger { display: none !important; }
     </style>
 
     <div class="dk-catalog-overlay" id="dkCatalogOverlay" onclick="closeDesktopCatalog(event)">
@@ -3055,6 +3081,97 @@
         }
     </script>
 
+
+    <!-- Global Product Bottom Panel -->
+    <div id="product-bottom-panel" class="product-bottom-panel" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#fff; z-index:9999; padding:20px; box-shadow:0 -5px 20px rgba(0,0,0,0.15); border-top-left-radius:20px; border-top-right-radius:20px; align-items:center; justify-content:space-between; transform:translateY(100%); transition:transform 0.3s ease;">
+        <div style="display:flex; align-items:center; gap:15px; width:65%;">
+             <img id="panel-img" src="" style="width:60px; height:60px; object-fit:cover; border-radius:10px;">
+             <div style="display:flex; flex-direction:column;">
+                 <span id="panel-title" style="font-weight:600; font-size:14px; line-height:1.2; margin-bottom:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></span>
+                 <span id="panel-price" style="font-weight:700; color:#333;"></span>
+             </div>
+        </div>
+        <div class="panel-qty" style="display:flex; align-items:center; background:#f5f5f5; border-radius:25px; padding:5px; height:40px;">
+             <button onclick="changeGlobalQty(-1)" style="border:none; background:transparent; width:30px; height:30px; font-size:18px; display:flex; align-items:center; justify-content:center; cursor:pointer;">-</button>
+             <span id="panel-qty-val" style="font-weight:bold; width:25px; text-align:center;">1</span>
+             <button onclick="changeGlobalQty(1)" style="border:none; background:transparent; width:30px; height:30px; font-size:18px; display:flex; align-items:center; justify-content:center; cursor:pointer;">+</button>
+        </div>
+    </div>
+
+    <!-- Google Translate Script -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'ru', includedLanguages: 'ru,uz,en', autoDisplay: false}, 'google_translate_element');
+        }
+        function toggleLangDropdown(e) {
+            e.stopPropagation();
+            const d = document.getElementById('langDropdown');
+            if(d.style.display === 'none') {
+                 d.style.display = 'flex';
+            } else {
+                 d.style.display = 'none';
+            }
+        }
+        function changeLanguage(langCode, imgUrl, e) {
+            e.stopPropagation();
+            document.getElementById('current-lang-img').src = imgUrl;
+            document.getElementById('current-lang-text').innerText = langCode;
+            document.getElementById('langDropdown').style.display = 'none';
+            
+            var gtSelect = document.querySelector('.goog-te-combo');
+            if(gtSelect) {
+                var map = {'RU': 'ru', 'UZ': 'uz', 'ENG': 'en'};
+                gtSelect.value = map[langCode];
+                gtSelect.dispatchEvent(new Event('change'));
+            }
+        }
+        document.addEventListener('click', function(e) {
+             const d = document.getElementById('langDropdown');
+             if(d && d.style.display === 'flex' && !e.target.closest('.m-lang')) {
+                 d.style.display = 'none';
+             }
+        });
+        
+        // Hide panel on scroll
+        window.addEventListener('scroll', function() {
+             var panel = document.getElementById('product-bottom-panel');
+             if(panel && panel.style.transform === 'translateY(0px)') {
+                  panel.style.transform = 'translateY(100%)';
+                  setTimeout(() => { panel.style.display = 'none'; }, 300);
+             }
+        }, {passive:true});
+
+        // Global Qty Functionality
+        function changeGlobalQty(delta) {
+             var span = document.getElementById('panel-qty-val');
+             var current = parseInt(span.innerText);
+             if(current + delta >= 0) {
+                 span.innerText = current + delta;
+             }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+    function openProductPanel(card) {
+        var img = card.querySelector('.p-image-wrap img').src;
+        var title = card.querySelector('.p-title').innerText;
+        var price = card.querySelector('.p-price').innerText;
+        
+        document.getElementById('panel-img').src = img;
+        document.getElementById('panel-title').innerText = title;
+        document.getElementById('panel-price').innerText = price;
+        document.getElementById('panel-qty-val').innerText = '1';
+        
+        var panel = document.getElementById('product-bottom-panel');
+        panel.style.display = 'flex';
+        // Allow rendering before moving to 0
+        setTimeout(() => {
+            panel.style.transform = 'translateY(0px)';
+        }, 10);
+    }
+</script>
 </body>
 
 </html>
